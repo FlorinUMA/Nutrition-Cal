@@ -38,12 +38,12 @@ pipeline {
                 echo "El path es: ${VOLUME} "
                 dir(path: env.BUILD_ID) {
                     unstash(name: 'compiled-results')
-                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F calorias.py'"
+                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F Calory_Cal.py'"
                 }
             }
             post {
                 success {
-                    archiveArtifacts "${env.BUILD_ID}/sources/dist/calorias"
+                    archiveArtifacts "${env.BUILD_ID}/sources/dist/Calory_Cal"
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
             }
